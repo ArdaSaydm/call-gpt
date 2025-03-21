@@ -18,7 +18,7 @@ type Request = {
   prompt: string;
 };
 
-export const handler: ServerlessFunctionSignature<Env, Request> =
+export const handler: ServerlessFunctionSignature<Env, Request> = 
   async function (
     context: Context<Env>,
     event: Request,
@@ -43,11 +43,11 @@ export const handler: ServerlessFunctionSignature<Env, Request> =
         messages: [
           {
             role: "system",
-            content:
-              "You are a helpful assistant that responds in Hong Kong Chinese (Traditional Chinese). Give answer in one or two short sentences in Traditional Chinese even if the other person speaks another language.",
+            content: `請用香港的廣東話回答所有問題。所有答案請以一至兩句句子回答，不論問題的是以廣東話，普通話，英文提問都給予以上回答，謝謝。`,
           },
           { role: "user", content: event.prompt },
         ],
+        temperature: 0.7,
       });
 
       const gptResponse = completion.choices[0].message.content;
